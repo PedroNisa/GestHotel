@@ -24,16 +24,16 @@ class ReservaController extends \BaseController {
     }
 
     public function index() {
-        return View::make('Reserva.index');
+        return View::make('Reservas.index');
     }
 
     public function show($id) {
         $ObjHabitacion = Habitacion::find($id);
-        return View::make('Reserva.detail')->with('Habitacion', $ObjHabitacion);
+        return View::make('Reservas.detail')->with('Habitacion', $ObjHabitacion);
     }
 
     public function create() {
-        return View::make('Reserva.available');
+        return View::make('Reservas.create');
     }
 
     public function store() {
@@ -48,16 +48,16 @@ class ReservaController extends \BaseController {
                 $id_reserva = $this->saveRserva($input);
                 $this->saveHabitacionReserva($input['id_habitacion'], $id_reserva, $input['id_precio']);
                 $this->uploadEstadoHabitacion($input['id_habitacion']);
-                if ($input['debe'] > 0) {
+                if ($input['monto'] > 0) {
                     $this->savePago($input, $id_reserva);
                 }
             });
-//            return View::make('Reserva.index');
+//            return View::make('Reservas.index');
             return Redirect::to('reservaciones');
         } else {
             $ObjHabitacion = Habitacion::find($input['id_habitacion']);
             return Redirect::to('reservaciones/' . $input['id_habitacion'])->with('Habitacion', $ObjHabitacion)->withErrors($validation)->withInput();
-//            return View::make('Reserva.detail')->with('Habitacion', $ObjHabitacion)->withErrors($validation);
+//            return View::make('Reservas.detail')->with('Habitacion', $ObjHabitacion)->withErrors($validation);
         }
     }
 
@@ -100,7 +100,7 @@ class ReservaController extends \BaseController {
     private function savePago($input, $id_reserva) {
         $ObjPago = new Pago();
         $ObjPago->fecha = date('Y-m-d H:i:s');
-        $ObjPago->monto = $input['debe'];
+        $ObjPago->monto = $input['monto'];
         $ObjPago->concepto = $input['saldo'] > 0 ? $this->concepto['pendiente'] : $this->concepto['cancelado'];
         $ObjPago->activo = 1;
         $ObjPago->id_reserva = $id_reserva;
@@ -110,13 +110,13 @@ class ReservaController extends \BaseController {
 
     private function uploadEstadoHabitacion($id_habitacion) {
         $ObjHabitacion = Habitacion::find($id_habitacion);
-        $ObjHabitacion->estado = 'OCUPADO';
+        $ObjHabitacion->estado = 'OCUPADA';
         $ObjHabitacion->save();
     }
 
     public function realizarCobro($id_reserva) {
         $objReserva = Reserva::find($id_reserva);
-        return View::make('Reserva.cobrar')->with('Reserva', $objReserva);
+        return View::make('Reservas.cobrar')->with('Reserva', $objReserva);
     }
 
     public function confirmarCobro($id_reserva) {
@@ -126,7 +126,7 @@ class ReservaController extends \BaseController {
         if (count($objReserva->pago) > 0) {
             $input['id_moneda'] = $objReserva->pago->first()->id_moneda;
         }
-        $input['saldo'] = ($input['total'] - ($input['debe'] + $input['debe-cuenta']));
+        $input['saldo'] = ($input['total'] - ($input['monto'] + $input['monto-cuenta']));
         DB::transaction(function() use ($input, $id_reserva) {
             $this->savePago($input, $id_reserva);
             if ($input['saldo'] <= 0) {
@@ -134,7 +134,7 @@ class ReservaController extends \BaseController {
             }
         });
         $newObjReserva = Reserva::find($id_reserva);
-        return View::make('Reserva.confirmado')->with('Reserva', $newObjReserva);
+        return View::make('Reservas.confirmado')->with('Reserva', $newObjReserva);
     }
 
     public function uploadEstadoPagoReserva($id_reserva) {

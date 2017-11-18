@@ -5,7 +5,7 @@
         {{ Form::text('monto'.$numPrices,'',['class'=>'form-control'])}}
         <span class="error">{{ $errors->first('monto'.$numPrices)}}</span>
     </div>
-    {{Form::label('personas'.$numPrices, 'Personas',['class'=>'col-sm-1 control-label'])}}
+    {{Form::label('personas'.$numPrices, 'Personas',['class'=>'col-sm-2 control-label'])}}
     <div class="col-sm-2">
         <select name="personas<?php echo $numPrices; ?>" class="form-control" id="personas<?php echo $numPrices; ?>">
             <?php
@@ -16,9 +16,9 @@
             }
             ?>
         </select>
-        <span class="error">{{ $errors->first('monto'.$numPrices)}}</span>      
+        <span class="error">{{ $errors->first('monto'.$numPrices)}}</span>
     </div>
-    {{Form::label('id_moneda'.$numPrices, 'Moneda',['class'=>'col-sm-1 control-label'])}}
+    {{Form::label('id_moneda'.$numPrices, 'Moneda',['class'=>'col-sm-2 control-label'])}}
     <div class="col-sm-2">
         <select name="id_moneda{{$numPrices}}" id="id_moneda{{$numPrices}}" class="form-control" >             
             @foreach($Moneda as $row)             

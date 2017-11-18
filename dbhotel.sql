@@ -141,8 +141,7 @@ CREATE TABLE IF NOT EXISTS `moneda` (
 --
 
 INSERT INTO `moneda` (`id`, `nombre`, `pais`, `simbolo`, `created_at`, `updated_at`) VALUES
-(5, 'Bolivianos', 'Bolivia', 'Bs.-', '2014-05-08 02:16:45', '2014-05-08 02:16:45'),
-(6, 'Reales', 'Brasil', '$R.-', '2014-05-12 23:46:17', '2014-05-12 23:46:17');
+(5, 'Euros', 'España', '€', '2014-05-08 02:16:45', '2014-05-08 02:16:45');
 
 -- --------------------------------------------------------
 
@@ -153,7 +152,7 @@ INSERT INTO `moneda` (`id`, `nombre`, `pais`, `simbolo`, `created_at`, `updated_
 CREATE TABLE IF NOT EXISTS `pago` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
-  `debe` float(8,2) NOT NULL,
+  `monto` float(8,2) NOT NULL,
   `concepto` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `activo` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `id_reserva` int(10) unsigned NOT NULL,
@@ -173,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `pago` (
 
 CREATE TABLE IF NOT EXISTS `precio` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `debe`` float(8,2) NOT NULL,
+  `monto`` float(8,2) NOT NULL,
   `id_moneda` int(10) unsigned NOT NULL,
   `id_tipo_habitacion` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -187,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `precio` (
 -- Volcado de datos para la tabla `precio`
 --
 
-INSERT INTO `precio` (`id`, `debe`, `id_moneda`, `id_tipo_habitacion`, `created_at`, `updated_at`) VALUES
+INSERT INTO `precio` (`id`, `monto`, `id_moneda`, `id_tipo_habitacion`, `created_at`, `updated_at`) VALUES
 (1, 200.00, 5, 4, '2014-05-12 20:24:39', '2014-05-13 19:07:09'),
 (2, 250.00, 6, 4, '2014-05-13 19:07:09', '2014-05-13 19:07:09'),
 (3, 150.00, 5, 6, '2014-05-13 19:15:40', '2014-05-13 19:15:40');

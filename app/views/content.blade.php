@@ -1,6 +1,6 @@
-<div class="content-wrapper" id="wrap" style="padding: 20px">
-    <container-fluid>
+<div class="content-wrapper" id="wrap" style="padding: 40px">
+    <div class="container-fluid">
         @yield('content')
-    </container-fluid>
+    </div>
 </div>
 

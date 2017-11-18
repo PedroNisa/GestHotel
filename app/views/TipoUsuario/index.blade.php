@@ -3,17 +3,17 @@
 TIPO USUARIO
 @stop
 @section('content')
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th colspan="4">
-                    <a href="tipo-usuario/create" title="Nuevo">
-                        <span class="label label-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo</span>
-                        <span class="label label-default"></span>            
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i>  USUARIOS
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <a class="btn btn-primary" href="tipo-usuario/create" title="Nuevo" role="button" style="margin-bottom: 20px">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo
                     </a>
-                </th>
-            </tr>
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -38,6 +38,11 @@ TIPO USUARIO
         <tfoot>
         </tfoot>
     </table>
+                </div>
+            </div>
+        </div>
+
+
 </div>
 @stop
 

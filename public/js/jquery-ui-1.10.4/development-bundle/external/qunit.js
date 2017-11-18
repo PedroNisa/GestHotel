@@ -1979,7 +1979,7 @@ QUnit.jsDump = (function() {
 	return jsDump;
 }());
 
-// from jquery.js
+// from jquery.js-front
 function inArray( elem, array ) {
 	if ( array.indexOf ) {
 		return array.indexOf( elem );

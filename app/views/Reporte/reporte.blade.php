@@ -1,37 +1,38 @@
 <?php
+require_once __DIR__ . '/../../../vendor/autoload.php';
 ob_start();
-echo HTML::style('css/layout.css');
 getHeader($Input);
 getContent($Input);
 
+        // función que pinta la cabecera del reporte
 function getHeader($Input) {
     ?>
-    <table class="header-reporte">
-        <thead>
+    <table class="header-reporte" style="width: 100%;" >
+        <thead >
             <tr><th><h4>Reporte Reservas</h4></th></tr>
-    <tr><th>Desde <?php echo getDateFormting($Input['desde']); ?> Hasta <?php echo getDateFormting($Input['hasta']); ?></th></tr>
+    <tr><th>Desde {{getDateFormting($Input['desde'])}} Hasta {{getDateFormting($Input['hasta'])}}</th></tr>
+
     </thead>   
     </table>
     <?php
 }
-
+    // función que pinta el cuerpo del reporte
 function getContent($Input) {
     ?>
-    <table class="content-reporte" border="1" cellspacing="0" cellpadding="0">
+    <table class="content-reporte" border="1" cellspacing="0" cellpadding="0" style="text-align: center">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Habitación</th>
-                <th>Cliente</th>
-                <th>Ingreso</th>
-                <th>Salida</th>
-                <th>Empleado</th>
-                <th>Estado</th>
-                <th>Precio</th>
-                <th>Días</th>
-                <th>Monto Pagado</th>
-                <th>Total</th>
-                <th>Moneda</th>                
+                <th>&nbsp;Hab&nbsp;</th>
+                <th>&nbsp;Cliente&nbsp;</th>
+                <th>&nbsp;Ingreso&nbsp;</th>
+                <th>&nbsp;Salida&nbsp;</th>
+                <th>&nbsp;Empleado&nbsp;</th>
+                <th>&nbsp;Estado&nbsp;</th>
+                <th>&nbsp;Precio&nbsp;</th>
+                <th>&nbsp;Días&nbsp;</th>
+                <th>&nbsp;Pagado&nbsp;</th>
+                <th>&nbsp;Total&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -42,48 +43,51 @@ function getContent($Input) {
                 $Reserva = Reserva::where('estado_pago', '=', $Input['estado_pago'])->whereBetween('fecha', array($Input['desde'] . ' 00:00:00', $Input['hasta'] . ' 23:59:59'))->get();
             }
 
+
             foreach ($Reserva as $rowR) {
                 $Habitacion = Habitacion::find($rowR->habitacionReserva->id_habitacion);
                 $ObjPrecio = Precio::find($rowR->habitacionReserva->id_precio);
                 $objMoneda = Moneda::find($ObjPrecio->id_moneda);
                 $objCliente = Cliente::find($rowR->id_cliente);
                 $objTrabajador = Trabajador::find($rowR->id_trabajador);
+
                 ?>
                 <tr>
-                    <td><?php echo $rowR->id; ?></td>
-                    <td><?php echo $Habitacion->nro; ?></td>
-                    <td><?php echo $objCliente->nombre . ' ' . $objCliente->apellidoP . ' ' . $objCliente->apellidoM; ?></td>
-                    <td><?php echo $rowR->fecha_entrada; ?></td>
-                    <td><?php echo $rowR->fecha_salida; ?></td>                  
-                    <td><?php echo $objTrabajador->nombre . ' ' . $objTrabajador->apellidoP . ' ' . $objTrabajador->apellidoM; ?></td>
-                    <td><?php echo $rowR->estado_pago; ?></td>
-                    <td><?php echo $ObjPrecio->monto; ?></td>
-                    <td><?php echo $rowR->dias; ?></td>
+                    <td>&nbsp;<?php echo $rowR->id; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $Habitacion->nro; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $objCliente->nombre . ' ' . $objCliente->apellido1 . ' ' . $objCliente->apellido2; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $rowR->fecha_entrada; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $rowR->fecha_salida; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $objTrabajador->nombre . ' ' . $objTrabajador->apellido1 . ' ' . $objTrabajador->apellido2; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $rowR->estado_pago; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $ObjPrecio->monto; ?>&nbsp;</td>
+                    <td>&nbsp;<?php echo $rowR->dias; ?>&nbsp;</td>
                     <td>
                         <?php
                         $monto = 0;
                         if (count($rowR->pago) > 0) {
                             foreach ($rowR->pago as $rowP) {
                                 $monto+=$rowP->monto;
-                                echo $rowP->monto . '<br>';
+                                echo $rowP->monto . $objMoneda->simbolo . '<br>';
                             }
                         } else {
-                            echo $monto;
+                            echo $monto . $objMoneda->simbolo;
                         }
                         ?>
 
                     </td>
                     <td><?php echo $rowR->total; ?></td>
-                    <td><?php echo $objMoneda->simbolo; ?></td>
+
                 </tr>
                 <?php
             }
+
             ?>
         </tbody>
     </table>
     <?php
 }
-
+// funcion para el formato de la fecha
 function getDateFormting($date) {
     $Ymd = explode('-', $date);
     $meses = [
@@ -92,9 +96,9 @@ function getDateFormting($date) {
     ];
     return $Ymd[2] . ' de ' . $meses[$Ymd[1]] . ' ' . $Ymd[0];
 }
-
+// incializa la libreria que genera los pdfs
 $content = ob_get_clean();
-$mpdf = new mPDF('c', 'Letter', '', '', 10, 10, 25, 25, 16, 13);
+$mpdf = new \Mpdf\Mpdf();
 $mpdf->SetTitle('my title');
 $mpdf->SetHeader('{DATE j-m-Y}|{PAGENO}/{nb}|Hotel Jhonn-Zen');
 $mpdf->SetFooter('{PAGENO}');

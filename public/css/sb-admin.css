@@ -11,7 +11,7 @@ body {
   overflow-x: hidden; }
 
 body.sticky-footer {
-  margin-bottom: 56px; }
+  margin-bottom: 0px; }
   body.sticky-footer .content-wrapper {
     min-height: calc(100vh - 56px - 56px); }
 
@@ -330,11 +330,12 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   max-width: 40rem; }
 
 footer.sticky-footer {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 56px;
+
+  bottom: 0;
   background-color: #e9ecef;
   line-height: 55px; }
   @media (min-width: 992px) {

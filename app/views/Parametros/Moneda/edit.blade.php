@@ -1,8 +1,22 @@
-<h4>    
-    <a href="{{URL::to('sistema/parametros/moneda')}}" class="get-list">
+
+<!!-- EDITA LA O LAS MONEDAS EN USO PARA LA APLICACIÓN -->
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> NUEVA MONEDA
+    </div>
+    <br>
+
+<h4>
+    <a href="{{URL::to('sistema/parametros/moneda')}}" class="get-list"  style="padding: 2%">
         <span class="label label-primary">Volver a Listado </span>  
     </a>
 </h4>
+    <div class="card-body">
+        <div class="container-fluid">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
 {{ Form::open(array('url' => 'sistema/parametros/moneda/'.$Moneda->id,'method'=>'put','class'=>'form-horizontal form-new-item')) }}   
 <div class="form-group">
     {{Form::label('nombre', 'Nombre',['class'=>'col-sm-3 control-label'])}}
@@ -27,9 +41,14 @@
 </div>
 
 <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        {{ Form::submit('Guardar',['id'=>'btn-submit', 'class'=>'btn btn-default'])}}
+    <div class="col-sm-offset-4 col-sm-12">
+        {{ Form::submit('Guardar',['id'=>'btn-submit', 'class'=>'btn btn-success'])}}
+        <a class="btn btn-danger btn-close" href="{{ URL::previous() }}">Cancelar</a>
     </div>
 </div>
 
-
+</div>
+                </div>
+            </div>
+        </div>
+    </div>

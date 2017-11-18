@@ -4,12 +4,12 @@
 class ClienteController extends \BaseController {
 
     private $rules = array(
-        'nombre' => 'Required',
-        'apellido1' => 'Required',
-        'apellido2' => 'Required',
-        'dni' => 'Required',
-        'telefono' => 'numeric',
-        'email' => 'unique:cliente|email'
+        'nombre' => 'required|between:3,15|regex:/^[A-z][A-z\s\.\']+$/',
+        'apellido1' => 'required|between:3,15|regex:/^[A-z][A-z\s\.\']+$/',
+        'apellido2' => 'required|between:3,15|regex:/^[A-z][A-z\s\.\']+$/',
+        'dni' => 'required|regex:/^[0-9]{7,8}[A-Z]+$/',
+        'telefono' =>['required','regex:/^[9|6|7][0-9]{8}$/'],
+        'email' => 'required|unique:cliente|email'
     );
 
     public function __construct() {

@@ -57,7 +57,7 @@ class MimeTypeExtensionGuesser implements ExtensionGuesserInterface
         'application/java-archive' => 'jar',
         'application/java-serialized-object' => 'ser',
         'application/java-vm' => 'class',
-        'application/javascript' => 'js',
+        'application/javascript' => 'js-front',
         'application/json' => 'json',
         'application/jsonml+json' => 'jsonml',
         'application/lost+xml' => 'lostxml',

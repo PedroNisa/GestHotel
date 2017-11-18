@@ -37,7 +37,7 @@ $(document).ready(function() {
         }
     });
 
-    /************************************/
+    /********accion eliminar item*******/
 
     $('.a-delete').on('click', function() {
         var status = confirm("Se Eliminará el Item Seleccionado!!!");
@@ -284,3 +284,8 @@ function limpiarformulario(formulario) {
         $(this).val('');
     });
 }
+
+/* time refresh */
+setTimeout(function () {
+    $('.fa-spinner').removeClass()
+}, 2500);

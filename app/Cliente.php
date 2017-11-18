@@ -9,10 +9,10 @@ class Cliente extends Model
     protected $table = "cliente";
 
     protected $fillable = [
-        'nombre', 'apellidoP', 'apellidoM','telefono','direccion','email','ci','activo'
+        'nombre', 'apellido1', 'apellido2','telefono','direccion','email','ci','activo'
     ];
 
     public function reserva() {
-        return $this->hasMany('Reserva', 'id_cliente');
+        return $this->hasMany('Reservas', 'id_cliente');
     }
 }

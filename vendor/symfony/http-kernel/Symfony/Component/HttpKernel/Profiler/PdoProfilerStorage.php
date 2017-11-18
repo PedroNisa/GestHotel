@@ -15,7 +15,7 @@ namespace Symfony\Component\HttpKernel\Profiler;
  * Base PDO storage for profiling information in a PDO database.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- * @author Jan Schumann <js@schumann-it.com>
+ * @author Jan Schumann <js-front@schumann-it.com>
  */
 abstract class PdoProfilerStorage implements ProfilerStorageInterface
 {

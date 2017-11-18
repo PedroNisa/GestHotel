@@ -3,7 +3,7 @@
 class HabitacionController extends \BaseController {
 
     private $rules = array(
-        'nro' => 'required|numeric|unique:habitacion',
+        'nro' => 'required|numeric|unique:habitacion|digits:3',
         'id_tipo_habitacion' => 'required'
     );
 
@@ -18,6 +18,7 @@ class HabitacionController extends \BaseController {
     public function index() {
         $ObjHabitacion = Habitacion::orderby('id_tipo_habitacion', 'asc')->get();
         return View::make('Habitacion.index')->with('Habitacion', $ObjHabitacion);
+       
     }
 
     public function create() {

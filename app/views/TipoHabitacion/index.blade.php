@@ -14,14 +14,9 @@ TIPO HABITACION
         <div class="table-responsive">
             <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-
-
                 <a class="btn btn-primary" href="tipo-habitacion/create" title="Nuevo" role="button" style="margin-bottom: 20px">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo
                 </a>
-
-
-
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
@@ -35,16 +30,12 @@ TIPO HABITACION
                     <tr>
                         <td>{{ $row->nombre }}</td>
                         <td>{{ $row->descripcion }}</td>
-                        <td>{{ $Precio->$row }}</td>
-                        <td><a href="tipo-habitacion/{{$row->id}}/edit" title="Editar"><i class="fa fa-pencil custom"></i></a></td>
-                        <td>
-
-
+                        <td>Precios</td>
+                        <td style="text-align: center; "><a href="tipo-habitacion/{{$row->id}}/edit" title="Editar"><i class="fa fa-pencil custom"></i></a></td>
+                        <td style="text-align: center; ">
                             <a href="#" class="a-delete" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             {{ Form::open(array('url'=>'administracion/tipo-habitacion/'.$row->id,'method'=>'delete'))}}
                             {{ Form::close()}}
-
-
                         </td>
                     </tr>
                 @endforeach

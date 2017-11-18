@@ -13,6 +13,7 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
      * @var array
      */
     protected $hidden = array('password');
+ //   protected $primaryKey = 'id';
 
     public function tipoUsuario() {
         return $this->belongsTo('TipoUsuario','id_tipo_usuario');

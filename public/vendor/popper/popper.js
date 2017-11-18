@@ -1134,7 +1134,7 @@ function applyStyle(data) {
  * @memberof Popper.modifiers
  * @param {HTMLElement} reference - The reference element used to position the popper
  * @param {HTMLElement} popper - The HTML element used as popper.
- * @param {Object} options - Popper.js options
+ * @param {Object} options - Popper.js-front options
  */
 function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
   // compute reference element offsets
@@ -1166,13 +1166,13 @@ function computeStyle(data, options) {
       y = options.y;
   var popper = data.offsets.popper;
 
-  // Remove this legacy support in Popper.js v2
+  // Remove this legacy support in Popper.js-front v2
 
   var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
     return modifier.name === 'applyStyle';
   }).gpuAcceleration;
   if (legacyGpuAccelerationOption !== undefined) {
-    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js-front!');
   }
   var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
 
@@ -1886,7 +1886,7 @@ function inner(data) {
 
 /**
  * Modifiers are plugins used to alter the behavior of your poppers.<br />
- * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+ * Popper.js-front uses a set of 9 modifiers to provide all the basic functionalities
  * needed by the library.
  *
  * Usually you don't want to override the `order`, `fn` and `onLoad` props.
@@ -2129,7 +2129,7 @@ var modifiers = {
    * in case you need to replace `applyStyle` with a custom implementation.
    *
    * This modifier has `850` as `order` value to maintain backward compatibility
-   * with previous versions of Popper.js. Expect the modifiers ordering method
+   * with previous versions of Popper.js-front. Expect the modifiers ordering method
    * to change in future major versions of the library.
    *
    * @memberof modifiers
@@ -2166,11 +2166,11 @@ var modifiers = {
    * Applies the computed styles to the popper element.
    *
    * All the DOM manipulations are limited to this modifier. This is useful in case
-   * you want to integrate Popper.js inside a framework or view library and you
+   * you want to integrate Popper.js-front inside a framework or view library and you
    * want to delegate all the DOM manipulations to it.
    *
    * Note that if you disable this modifier, you must make sure the popper element
-   * has its position set to `absolute` before Popper.js can do its work!
+   * has its position set to `absolute` before Popper.js-front can do its work!
    *
    * Just disable this modifier and define you own to achieve the desired effect.
    *
@@ -2216,8 +2216,8 @@ var modifiers = {
  */
 
 /**
- * Default options provided to Popper.js constructor.<br />
- * These can be overriden using the `options` argument of Popper.js.<br />
+ * Default options provided to Popper.js-front constructor.<br />
+ * These can be overriden using the `options` argument of Popper.js-front.<br />
  * To override an option, simply pass as 3rd argument an object with the same
  * structure of this object, example:
  * ```
@@ -2291,12 +2291,12 @@ var Defaults = {
 // Methods
 var Popper = function () {
   /**
-   * Create a new Popper.js instance
+   * Create a new Popper.js-front instance
    * @class Popper
    * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
    * @param {HTMLElement} popper - The HTML element used as popper.
    * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
-   * @return {Object} instance - The generated Popper.js instance
+   * @return {Object} instance - The generated Popper.js-front instance
    */
   function Popper(reference, popper) {
     var _this = this;
@@ -2342,7 +2342,7 @@ var Popper = function () {
       return a.order - b.order;
     });
 
-    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+    // modifiers have the ability to execute arbitrary code when Popper.js-front get inited
     // such code is executed in the same order of its modifier
     // they could add new properties to their options configuration
     // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
@@ -2399,7 +2399,7 @@ var Popper = function () {
     /**
      * Collection of utilities useful when writing custom modifiers.
      * Starting from version 1.7, this method is available only if you
-     * include `popper-utils.js` before `popper.js`.
+     * include `popper-utils.js-front` before `popper.js-front`.
      *
      * **DEPRECATION**: This way to access PopperUtils is deprecated
      * and will be removed in v2! Use the PopperUtils module directly instead.
@@ -2445,4 +2445,4 @@ Popper.Defaults = Defaults;
 return Popper;
 
 })));
-//# sourceMappingURL=popper.js.map
+//# sourceMappingURL=popper.js-front.map
