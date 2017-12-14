@@ -4,11 +4,14 @@
        recibe una petición ajax-->
 
 <?php
+
+//recojemos los objetos
 $Habitacion = Habitacion::find($Reserva->habitacionReserva->id_habitacion);
 $ObjPrecio = Precio::find($Reserva->habitacionReserva->id_precio);
 $objMoneda = Moneda::find($ObjPrecio->id_moneda);
 $objCliente = Cliente::find($Reserva->id_cliente);
 ?>
+//mostramos los datos actualizados en la tabla de las reservas
 <td><?php echo '# ' . $Habitacion->nro; ?></td>
 <td><?php echo $Habitacion->tipoHabitacion->nombre; ?></td>
 <td><?php echo $objCliente->nombre . ' ' . $objCliente->apellido1 . ' ' . $objCliente->apellido2; ?></td>
@@ -27,29 +30,34 @@ $objCliente = Cliente::find($Reserva->id_cliente);
 <td><?php echo $Reserva->total; ?></td>
 <td>
     <?php
+    //descuenta el pago realizado
     $monto = 0;
     if (count($Reserva->pago) > 0) {
         foreach ($Reserva->pago as $rowP) {
-            $monto+=$rowP->monto;
+            $monto += $rowP->monto;
             echo $rowP->monto . '<br>';
         }
     } else {
         echo $monto;
     }
-    ?>           
+    ?>
 </td>
-<td><?php echo ($Reserva->total - $monto); ?></td>
+<td><?php echo($Reserva->total - $monto); ?></td>
 <td>
-        <?php
+    <?php
+    //si el cliente tiene pagos pendiente mostrará el simbolo dolar para seguir cobrandole el monto pendiente
+    //en caso contrario muentra el link para liberar la habitación
     if ($monto < $Reserva->total) {
         ?>
-        <a href="{{URL::to('reservaciones/realizar-cobro/'.$Reserva->id)}}" class="realizar-cobro" title="Realizar Cobro" >
+        <a href="{{URL::to('reservaciones/realizar-cobro/'.$Reserva->id)}}" class="realizar-cobro"
+           title="Realizar Cobro">
             <span class="glyphicon glyphicon-usd"></span>
         </a><br>
         <?php
     } else {
         ?>
-        <a href="{{URL::to('reservaciones/liberar/'.$Reserva->id)}}" class="liberar" title="Liberar Habitación" >Liberar</a>
+        <a href="{{URL::to('reservaciones/liberar/'.$Reserva->id)}}" class="liberar"
+           title="Liberar Habitación">Liberar</a>
         <?php
     }
     ?>

@@ -4,6 +4,8 @@ NUEVO TIPO HABITACION
 @stop
 @section('content')
 
+<!-- DATATABLES PARA EDITAR EL TIPO DE HABITACION SELECCIONADA -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> EDITAR TIPO HABITACION

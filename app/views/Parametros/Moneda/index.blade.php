@@ -1,7 +1,6 @@
-
-
 <!!-- MUESTRA LA O LAS MONEDAS EN USO PARA LA APLICACIÓN -->
 <!-- este listado es recogida por peticion ajax -->
+
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i> LISTADO DE MONEDAS
@@ -29,17 +28,19 @@
                 </thead>
                 <tbody>
                 @foreach($Moneda as $row)
-                    <tr>
-                        <td>{{ $row->nombre }}</td>
-                        <td>{{ $row->pais }}</td>
-                        <td>{{ $row->simbolo}}</td>
-                        <td><a href="parametros/moneda/{{$row->id}}/edit" title="Editar" class="new-item"><i class="fa fa-pencil custom"></a></td>
-                        <td>
-                            <a href="#" class="a-delete-ajax" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            {{ Form::open(array('url'=>'sistema/parametros/moneda/'.$row->id,'method'=>'delete'))}}
-                            {{ Form::close()}}
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $row->nombre }}</td>
+                    <td>{{ $row->pais }}</td>
+                    <td>{{ $row->simbolo}}</td>
+                    <td><a href="parametros/moneda/{{$row->id}}/edit" title="Editar" class="new-item"><i
+                                class="fa fa-pencil custom"></a></td>
+                    <td>
+                        <a href="#" class="a-delete-ajax" title="Eliminar"><i class="fa fa-trash-o"
+                                                                              aria-hidden="true"></i></a>
+                        {{ Form::open(array('url'=>'sistema/parametros/moneda/'.$row->id,'method'=>'delete'))}}
+                        {{ Form::close()}}
+                    </td>
+                </tr>
                 @endforeach
                 </tbody>
                 <tfoot>
@@ -47,5 +48,4 @@
             </table>
         </div>
     </div>
-
 </div>

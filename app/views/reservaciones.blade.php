@@ -1,4 +1,8 @@
 
+
+<!-- SEGUNDO NIVEL DEL MENU RESERVAS-->
+
+
         <li <?php echo (Request::is('reservaciones')) ? 'class="active"' : ''; ?>>
             <a href="{{URL::to('reservaciones')}}"><span class="glyphicon glyphicon-saved"></span> Reservadas</a>
         </li>  

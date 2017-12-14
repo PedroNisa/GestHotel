@@ -42,12 +42,22 @@ LISTADO DE RESERVAS
                         <td><?php echo '# ' . $Habitacion->nro; ?></td>
                         <td><?php echo $Habitacion->tipoHabitacion->nombre; ?></td>
                         <td><?php echo $objCliente->nombre . ' ' . $objCliente->apellido1 . ' ' . $objCliente->apellido2; ?></td>
-                        <td><?php echo $rowR->fecha_entrada; ?></td>
-                        <td><?php echo $rowR->fecha_salida; ?></td>
+                        <td>
+                            <?php
+                            $datetime1 = new DateTime(date($rowR->fecha_entrada));
+                            echo $datetime1->format('d-m-Y H:i:s');
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $datetime2 = new DateTime(date($rowR->fecha_salida));
+                            echo $datetime2->format('d-m-Y H:i:s');
+                            ?>
+                        </td>
                         <td><?php echo $rowR->dias; ?></td>
                         <td>
                             <?php
-                            $datetime1 = new DateTime(date('Y-m-d H:i:s'));
+                            $datetime1 = new DateTime(date('d-m-Y H:i:s'));
                             $datetime2 = new DateTime($rowR->fecha_salida);
                             $interval = $datetime1->diff($datetime2);
                             echo $interval->format('%R%a días');

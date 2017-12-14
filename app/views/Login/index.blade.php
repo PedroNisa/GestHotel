@@ -1,14 +1,16 @@
+
+<!-- VISTA DEL LOGIN DE AUTENTICACIÓN -->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>AUTENTICACION</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{ HTML::style('css/bootstrap-3.1.1/css/bootstrap.min.css') }}
-    {{ HTML::style('css/bootstrap-3.1.1/css/bootstrap-theme.min.css') }}
-    {{ HTML::style('css/layout.css') }}
-    {{ HTML::script('js/jquery-2.0.2.min.js') }}
-    {{ HTML::script('css/bootstrap-3.1.1/js/bootstrap.min.js') }}
+    {{ HTML::style('css/Bootstrap-3/css/bootstrap.min.css') }}
+    {{ HTML::style('css/Bootstrap-3/css/bootstrap-theme.min.css') }}
+    {{ HTML::style('css/Custom/layout.css') }}
+    {{ HTML::script('js/Bootstrap/bootstrap3/bootstrap.min.js') }}
     {{ HTML::script('js/main.min.js') }}
 </head>
 <body>
@@ -16,7 +18,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <!--<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>-->
                 <h1 class="text-center">Login</h1>
             </div>
             <div class="modal-body">

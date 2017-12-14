@@ -3,6 +3,9 @@
 EDITAR USUARIO
 @stop
 @section('content')
+
+<!-- DATATABLES PARA EDITAR EL USUARIO SELECCIONADO -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> EDITAR USUARIO
@@ -15,7 +18,7 @@ EDITAR USUARIO
                         <div class="form-group">
                             {{Form::label('email', 'Email',['class'=>'col-sm-3 control-label'])}}
                             <div class="col-sm-4">
-                                <h4>{{$Usuario->email}}</h4>
+                                <h5>{{$Usuario->email}}</h5>
                             </div>
                         </div>
                         <div class="form-group">
@@ -42,9 +45,9 @@ EDITAR USUARIO
                             <div class="col-sm-4">
                                 <select name="id_trabajador" id="id_trabajador" class="form-control" >
                                     <option value="">ELEGIR</option>
-                                    @foreach(Trabajador::where('acitvo','=','1')->orderBy('nombre','asc')->get() as $row)
+                                    @foreach(Trabajador::where('activo','=','1')->orderBy('nombre','asc')->get() as $row)
                                         <option value="{{$row->id}}" {{ $row->id==$Usuario->id_trabajador ? 'selected' : '' }}>
-                                            {{$row->nombre.' '.$row->apellidoP.' '.$row->apellidoM}}
+                                            {{$row->nombre.' '.$row->apellido1.' '.$row->apellido2}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -53,8 +56,9 @@ EDITAR USUARIO
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                {{ Form::submit('Guardar',['class'=>'btn btn-default'])}}
+                            <div class="col-sm-offset-3 col-sm-10">
+                                {{ Form::submit('Guardar',['class'=>'btn btn-success'])}}
+                                <a class="btn btn-danger btn-close" href="{{ URL::previous() }}">Cancelar</a>
                             </div>
                         </div>
 

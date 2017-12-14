@@ -4,7 +4,7 @@ TIPO HABITACION
 @stop
 @section('content')
 
-        <!-- DataTables Card-->
+<!-- DATATABLES QUE MUESTRA EL LISTADO DE TIPOS DE HABITACIONES -->
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i> TIPO DE HABITACIONES
@@ -20,7 +20,6 @@ TIPO HABITACION
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>Precios</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -30,12 +29,12 @@ TIPO HABITACION
                     <tr>
                         <td>{{ $row->nombre }}</td>
                         <td>{{ $row->descripcion }}</td>
-                        <td>Precios</td>
                         <td style="text-align: center; "><a href="tipo-habitacion/{{$row->id}}/edit" title="Editar"><i class="fa fa-pencil custom"></i></a></td>
-                        <td style="text-align: center; ">
-                            <a href="#" class="a-delete" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            {{ Form::open(array('url'=>'administracion/tipo-habitacion/'.$row->id,'method'=>'delete'))}}
-                            {{ Form::close()}}
+                        <td>
+                            <a href="{{route('administracion.tipo-habitacion.destroy',$row->id)}}"
+                               onclick="return confirm('¿Seguro que desea eliminar este registro?')">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

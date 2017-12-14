@@ -2,6 +2,7 @@
 
 class AuthController extends \BaseController {
 
+    // Función  para mostrar la vista del Login
     public function showLogin()
     {
         // Verificamos si hay sesión activa

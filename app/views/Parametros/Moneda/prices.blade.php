@@ -1,4 +1,8 @@
-<div class="form-group">    
+
+<!!-- MUESTRA MUESTRA EL FORMULARIO PARA AGREGAR PRECIOS AL TIPO DE HABITACIÓN-->
+
+
+<div class="form-group">
     <a href="#" class="remove-price"><span class="glyphicon glyphicon-remove"></span></a>
     {{Form::label('monto'.$numPrices, 'Precio',['class'=>'col-sm-1 control-label'])}}
     <div class="col-sm-2">
@@ -20,12 +24,12 @@
     </div>
     {{Form::label('id_moneda'.$numPrices, 'Moneda',['class'=>'col-sm-2 control-label'])}}
     <div class="col-sm-2">
-        <select name="id_moneda{{$numPrices}}" id="id_moneda{{$numPrices}}" class="form-control" >             
-            @foreach($Moneda as $row)             
-            <option value="{{$row->id}}">{{$row->simbolo}}</option>         
+        <select name="id_moneda{{$numPrices}}" id="id_moneda{{$numPrices}}" class="form-control">
+            @foreach($Moneda as $row)
+            <option value="{{$row->id}}">{{$row->simbolo}}</option>
             @endforeach
-        </select>                
+        </select>
         <span class="error">{{ $errors->first('id_moneda'.$numPrices)}}</span>
-    </div>    
+    </div>
 </div>
 

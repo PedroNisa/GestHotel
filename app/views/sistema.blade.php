@@ -1,4 +1,6 @@
 
+<!-- SEGUNDO NIVEL DEL MENU SISTEMA-->
+
         <li <?php echo (Request::is('sistema/usuario/*') || Request::is('sistema/usuario')) ? 'class="active"' : ''; ?>>
             <a href="{{URL::to('sistema/usuario')}}"><i class="fa fa-users"></i>  Usuarios</a>
         </li>

@@ -5,6 +5,7 @@ NUEVA HABITACION
 @section('content')
 
     <!!-- DATATABLE PARA CREAR NUEVAS HABITACIONES EN EL ESTABLECIMIENTO -->
+
     <div class="card m-3">
         <div class="card-header">
             <i class="fa fa-table"></i> NUEVA HABITACIÓN

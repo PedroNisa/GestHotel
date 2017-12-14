@@ -1,14 +1,31 @@
+
+   /**********configuracion datapicker**************************/
 $(document).ready(function() {
     $('.default-date').Zebra_DatePicker();
     $('#date-start').Zebra_DatePicker({
+        days: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+          months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agostp', 
+          'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+           show_select_today: 'Hoy',
+            lang_clear_date: 'Limpiar fecha',
+
+           first_day_of_week: 0,
+             
         direction: true,
         pair: $('#date-end'),
-        always_visible: $('#caledar-visible1')
+        always_visible: $('#calendar-visible1')
     });
 
     $('#date-end').Zebra_DatePicker({
+                days: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+                          months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agostp', 
+                          'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                           lang_clear_date: 'Limpiar fecha',
+                   first_day_of_week: 0,
+                     
+
         direction: 1,
-        always_visible: $('#caledar-visible2')
+        always_visible: $('#calendar-visible2')
     });
     $('body').on('click', '.Zebra_DatePicker', function() {
         var ini = $('#date-start').val();
@@ -203,8 +220,11 @@ $(document).ready(function() {
 
     $('body').on('click', '#nuevo-cliente', function(e) {
         e.preventDefault();
-        $('#loginModal').addClass('show');
+            $('#loginModal').addClass('show');
     });
+
+
+
     $('body').on('click', '#guardar-cliente', function(e) {
         e.preventDefault();
         $('.custom-loading').addClass('show');

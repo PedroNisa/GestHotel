@@ -4,6 +4,7 @@ NUEVO TIPO HABITACION
 @stop
 @section('content')
 
+<!-- DATATABLES PARA CREAR UN NUEVO TIPO DE HABITACIÓN -->
 
     <div class="card md-3">
         <div class="card-header">
@@ -57,12 +58,4 @@ NUEVO TIPO HABITACION
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 @stop

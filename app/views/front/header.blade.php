@@ -4,17 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Holiday - templatemo</title>
-    <!--
-    Holiday Template
-    http://www.templatemo.com/tm-475-holiday
-    -->
+    <title>Viña de Oro</title>
+
     <!-- Google fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
     <!-- font awesome -->
-    {{ HTML::style('vendor/font-awesome/css/font-awesome.min.css') }}
+    {{ HTML::style('css/Font-awesome/css/font-awesome.min.css') }}
             <!-- bootstrap -->
     {{ HTML::style('css-front/bootstrap.min.css') }}
+    {{ HTML::style('css-front/bootstrap-datatimepicker-standalone.css') }}
     {{ HTML::style('css-front/bootstrap-datetimepicker.min.css') }}
             <!-- custom css -->
     {{ HTML::style('css-front/flexslider.css') }}

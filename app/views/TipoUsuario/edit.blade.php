@@ -4,6 +4,8 @@ EDITAR TIPO USUARIO
 @stop
 @section('content')
 
+<!-- DATATABLES PARA EDITAR EL ROL SELECCIONADO -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> NUEVO USUARIO

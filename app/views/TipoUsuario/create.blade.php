@@ -4,6 +4,8 @@ NUEVO TIPO USUARIO
 @stop
 @section('content')
 
+<!-- DATATABLES PARA CREAR UN NUEVO ROL -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> NUEVO TIPO USUARIO

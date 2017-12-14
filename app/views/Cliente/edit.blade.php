@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-    <!!-- DATATABLE PARA EDITAR EL CLIEBTE SELECCIONADO -->
+    <!!-- DATATABLE PARA EDITAR EL CLIENTE SELECCIONADO -->
 
     <div class="card md-3">
         <div class="card-header">
@@ -47,9 +47,17 @@
                                 {{ Form::text('email',$Cliente->email,['class'=>'form-control'])}}
                                 <span class="error">{{ $errors->first('email')}}</span>
                             </div>
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-4 form-group">
                                 {{ Form::label('direccion', 'Dirección',['class'=>'control-label']) }}
                                 {{ Form::text('direccion',$Cliente->direccion,['class'=>'form-control'])}}
+                            </div>
+                            <div class="col-md-4 form-group">
+                                {{ Form::label('provincia', 'Provincia',['class'=>'control-label']) }}
+                                {{ Form::text('provincia',$Cliente->provincia,['class'=>'form-control'])}}
+                            </div>
+                            <div class="col-md-4 form-group">
+                                {{ Form::label('pais', 'Pais',['class'=>'control-label']) }}
+                                {{ Form::text('pais',$Cliente->pais,['class'=>'form-control'])}}
                             </div>
                         </div>
                         <div class="col-md-12 form-group align-center">
@@ -63,18 +71,3 @@
         </div>
     </div>
 @stop
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

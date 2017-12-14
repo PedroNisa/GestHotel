@@ -3,7 +3,8 @@
 class BaseController extends Controller {
 
     /**
-     * Setup the layout used by the controller.
+     * Setup the layout used by the controller.     * 
+     * Define la plantilla base del diseño
      *
      * @return void
      */

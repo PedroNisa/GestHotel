@@ -19,19 +19,14 @@ Route::post('login', 'AuthController@postLogin'); // Verificar datos
 Route::get('logout', 'AuthController@logOut'); // Finalizar sesión
 
 
-/*Rutas privadas solo para usuarios autenticados
-Route::group(['before' => 'auth'], function()
-{
-
-});*/
 
 
+//RUTAS DEL PANEL DE ADMINISTRACIÓN
 
-//RUTAS DE PANEL DE ADMINISTRACIÓN
+/* rutas del Sistema */
 
 Route::resource('sistema/usuario', 'UsuarioController');
 Route::resource('sistema/tipo-usuario', 'TipoUsuarioController');
-
 Route::get('sistema/parametros', function() {
     if (Auth::check()) {
         return View::make('Parametros.parametros');
@@ -41,16 +36,34 @@ Route::get('sistema/parametros', function() {
 });
 
 
+/* rutas de Administracion */
 
 Route::resource('administracion/trabajador', 'TrabajadorController');
+//ruta para eliminar el trabajador con el id pasado por parámetro
+Route::get('trabajador/{id}/destroy',[
+    'uses'=>'TrabajadorController@destroy',
+    'as'=>'administracion.trabajador.destroy']);
+
 Route::resource('administracion/cliente', 'ClienteController');
+
+//ruta para eliminar un cliente
+Route::get('cliente/{id}/destroy',[
+    'before' => 'adminCont',
+    'uses'=>'ClienteController@destroy',
+    'as'=>'administracion.cliente.destroy']);
 
 Route::get('cliente/nuevo', 'ClienteController@nuevoCliente');
 Route::post('cliente/guardar', 'ClienteController@guardarCliente');
 Route::get('reservaciones/cliente/autocompletar', 'ClienteController@autocompletarCliente');
 
 Route::resource('administracion/habitacion', 'HabitacionController');
+Route::get('habitacion/{id}/destroy',[   
+    'uses'=>'HabitacionController@destroy',
+    'as'=>'administracion.habitacion.destroy']);
 Route::resource('administracion/tipo-habitacion', 'TipoHabitacionController');
+Route::get('tipo-habitacion/{id}/destroy',[
+    'uses'=>'TipoHabitacionController@destroy',
+    'as'=>'administracion.tipo-habitacion.destroy']);
 Route::resource('reservaciones', 'ReservaController');
 Route::resource('reservaciones/detail', 'ReservaController@saveReservation');
 
@@ -89,13 +102,15 @@ Route::get('administracion', function() {
         return Redirect::to('/');
     }
 });
-Route::get('sistema', function() {
+Route::get('sistema', array('before' => 'adminSis', function() {
     if (Auth::check()) {
         return View::make('sistema');
     } else {
         return Redirect::to('/');
     }
-});
+}));
+
+//pagina principal
 
 Route::get('index', function() {
     if (Auth::check()) {
@@ -170,7 +185,16 @@ Route::get('front/about', function() {
     }
 });
 
-//rutas para el contacto
+//rutas para el formulario de reserva
 Route::post('send', ['as' => 'send', 'uses' => 'MailController@send'] );
+
+//rutas para el formulario de contacto
+Route::post('contact', ['as' => 'contact', 'uses' => 'ContactController@send'] );
+
+/* uso de filtros de seguridad para usuarios sin privilegios */
+Route::when('sistema/*', 'adminSis');
+Route::when('administracion/habitacion/*', 'adminCont');
+
+
 
 

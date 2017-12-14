@@ -8,23 +8,30 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>SISTEMA HOTEL</title>
-    {{ HTML::style('css/bootstrap-3.1.1/css/bootstrap.css') }}
-    {{ HTML::style('vendor/bootstrap/css/bootstrap.css') }}
-    {{ HTML::style('css/bootstrap-3.1.1/css/bootstrap-theme.min.css') }}
-    {{ HTML::style('css/layout.css') }}
-    {{ HTML::style('js/Zebra_Datepicker-master/css/bootstrap.css') }}
-    {{ HTML::style('js/jquery-ui-1.12.1/jquery-ui.css') }}
-            <!-- Custom fonts for this template-->
-    {{ HTML::style('vendor/font-awesome/css/font-awesome.min.css') }}
-            <!-- Custom styles for tables-->
-    {{ HTML::style('vendor/datatables/dataTables.bootstrap4.css') }}
-            <!-- Custom styles for this template-->
-    {{ HTML::style('css/sb-admin.css') }}
-    {{ HTML::style('vendor/bootstrap/css/custom.css') }}
-    {{ HTML::style('css/AdminLTE.min.css') }}
 
-</head>
+    <!-- Estilos-->
+    
+     <!-- Estilos de Bootstrap-->
+    {{ HTML::style('css/Bootstrap-3/css/bootstrap.css') }}
+    {{ HTML::style('css/Bootstrap-4/bootstrap.css') }}
+     {{ HTML::style('css/Bootstrap-3/css/bootstrap-theme.min.css') }}
+      <!-- Estilos personalizados-->
+    {{ HTML::style('css/Custom/layout.css') }}
+     <!-- Estilos del Datepicker-->
+    {{ HTML::style('css/Zebra_Datepicker/datapicker.css') }}
+     <!-- Plugin para JQuery -->
+    {{ HTML::style('css/JQuery/jquery-ui-1.12.1/jquery-ui.css') }}
+            <!-- Fuentes e Iconos -->
+    {{ HTML::style('css/font-awesome/css/font-awesome.min.css') }}
+            <!-- Estilos para la tablas-->
+    {{ HTML::style('css/Datatables/dataTables.bootstrap4.css') }}
+            <!-- Estilos para el Panel de Administración-->
+    {{ HTML::style('css/Dashboard/admin.css') }}
+    {{ HTML::style('css/Dashboard/custom.css') }}
+    {{ HTML::style('css/Dashboard/AdminLTE.min.css') }}
 
+</head>  <!-- end head-->
+ 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -61,13 +68,6 @@
                 </ul>
             </li>
 
-            <?php
-            $currentUser = Auth::user();
-            $usuario = Usuario::find($currentUser->id);
-            if ( $usuario->tipoUsuario->nombre === 'Super Administrador') {
-            ?>
-            <br>
-
             <!-- visible por el superadministrador y el administrador -->
 
             <!-- MENU ADMINISTRACION -->
@@ -78,13 +78,15 @@
                     <span class="nav-link-text"> Administración</span>
 
                 </a>
-                <!-- segundo nivel -->
+                <!-- segundo nivel, existen zonas habilitadas a todos lo usuarios registrados -->
                 <ul class="sidenav-second-level collapse" id="collapseAdministracion">
                     @include('administracion')
                 </ul>
             </li>
             <?php
-            if ($usuario->tipoUsuario->nombre === 'Super Administrador') {
+            $currentUser = Auth::user();
+            $usuario = Usuario::find($currentUser->id);
+            if ($usuario->tipoUsuario->nombre === 'ADMINISTRADOR DE SISTEMA') {
             ?>
 
 
@@ -102,14 +104,10 @@
                     @include('sistema')
                 </ul>
             </li>
-
             <?php
                }
-            }
             ?>
-
         </ul>
-
 
             <!--Despliegue del menu lateral-->
         <ul class="navbar-nav sidenav-toggler">
@@ -124,52 +122,54 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 {{ Form::open(array('url'=>'login','method'=>'delete'))}}
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
                     <?php
                     echo $currentUser->trabajador->nombre . ' '
                             . $currentUser->trabajador->apellido1 .
                             ' ' . $currentUser->trabajador->apellido2;
                     ?>
                     <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-
                 {{ Form::close()}}
             </li>
         </ul>
-
     </div>
 </nav>
-
+<!-- Incluye el content-->
 @include('content')
+<!-- Incluye el Footer-->
 @include('footer')
 
-<!-- Bootstrap core JavaScript-->
+        <!-- SCRIPTS-->
 
-
-{{ HTML::script('css/bootstrap-3.1.1/js/bootstrap.min.js') }}
-
-{{ HTML::script('vendor/popper/popper.min.js') }}
-{{ HTML::script('js/jquery-2.0.2.min.js') }}
-{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
-
-
-        <!-- Core plugin JavaScript-->
-{{ HTML::script('vendor/jquery-easing/jquery.easing.min.js') }}
-
-        <!-- Page level plugin JavaScript-->
-{{ HTML::script('vendor/datatables/jquery.dataTables.js') }}
-{{ HTML::script('vendor/datatables/dataTables.bootstrap4.js') }}
-{{ HTML::script('vendor/datatables/dataTables.responsive.min.js') }}
-{{ HTML::script('vendor/datatables/responsive.bootstrap.min.js') }}
-
-        <!-- Custom scripts for all pages-->
-{{ HTML::script('js/sb-admin.min.js') }}
-
-        <!-- Custom scripts for tables-->
-{{ HTML::script('js/sb-admin-datatables.js')  }}
-{{ HTML::script('vendor/bootstrap/js/custom.js')  }}
-{{ HTML::script('js/jquery-ui-1.12.1/jquery-ui.js') }}
-{{ HTML::script('js/Zebra_Datepicker-master/javascript/zebra_datepicker.js') }}
+       <!-- Bootstrap 3 core JavaScript-->
+{{ HTML::script('js/Bootstrap/bootstrap3/bootstrap.min.js') }}
+       <!-- Plugin para crear etiquetas con JavaScript -->
+{{ HTML::script('js/Plugins/popper/popper.min.js') }}
+       <!-- Libreria Jquery -->
+{{ HTML::script('js/JQuery/jquery-2.0.2.min.js') }}
+        <!-- Bootstrap 4 core JavaScript-->
+{{ HTML::script('js/Bootstrap/bootstrap4/bootstrap.min.js') }}
+        <!-- Core Plugin JavaScript para animaciones -->
+{{ HTML::script('js/Plugins/jquery-easing/jquery.easing.min.js') }}
+        <!-- Scripts para los Datatable -->
+{{ HTML::script('js/datatables/jquery.dataTables.js') }}
+{{ HTML::script('js/datatables/dataTables.bootstrap4.js') }}
+{{ HTML::script('js/datatables/dataTables.responsive.min.js') }}
+{{ HTML::script('js/datatables/responsive.bootstrap.min.js') }}
+        <!-- Scripts para el panel de Administración-->
+{{ HTML::script('js/Dashboard/sb-admin.min.js') }}        
+{{ HTML::script('js/Dashboard/sb-admin-datatables.js')  }}
+        <!-- Scripts custom -->
+{{ HTML::script('js/Custom/custom.js')  }}
+ <!-- Scripts para el plugin de JQuery -->
+{{ HTML::script('js/JQuery/jquery-ui.js') }}
+<!-- Scripts para el Datepicker-->
+{{ HTML::script('js/Zebra_Datepicker/zebra_datepicker.js') }}
+<!-- Scripts propios -->
 {{ HTML::script('js/main.js') }}
+<!-- Scripts para las validaciones del lado del cliente -->
+{{ HTML::script('js-front/validate.js') }}
+{{ HTML::script('js-front/rules.js') }}
 
 </body>
 

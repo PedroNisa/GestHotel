@@ -5,6 +5,7 @@ REPORTES
 @section('content')
 
 <!!-- FORMULARIO PARA GENERAR REPORTES DEL ESTADO DE LAS RESERVAS -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> REPORTES

@@ -1,3 +1,7 @@
+
+<!-- MODAL PARA CREAR UN CLIENTE NUEVO DESDE EL MODAL NUEVA RESERVA-->
+
+
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -64,7 +68,7 @@
             <div class="row">
                 <a href="{{URL::to('cliente/guardar')}}" id="guardar-cliente" role="button" class="btn btn-default" >Guardar</a>
             </div>
-        </div>    
+        </div>
 
     </div>
 </div>

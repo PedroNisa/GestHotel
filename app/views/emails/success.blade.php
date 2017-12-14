@@ -1,7 +1,8 @@
+ 
+
+<!-- VISTA DE AGRADECIMIENTO SI EL CLIENTE ENVIA UN CORREODESDE LA WEB O HACE UNA RESERVA DESDE LA MISMA -->
 
 @include('Front.header')
-
-
         <!-- Banner -->
 <section class="tm-banner">
     <!-- Flexslider -->

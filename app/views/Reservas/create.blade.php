@@ -33,18 +33,22 @@ HABITACIONES DISPONIBLES
                 </thead>
                        <tbody>
                        <tr>
-                           <td>{{ HTML::image('resources/individual.png') }}</td>
 
+                           <!!-- HABITACIONES INDIVIDUALES -->
+
+                           <td>&nbsp;&nbsp;&nbsp;<i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i>
+                           </td>                          
+                
                            <?php
                            $c = 1;
                            foreach ($objhab as $row) {
-                               if($row->tipoHabitacion->nombre == 'Singular' && $row->estado == 'LIBRE'){
+                               if($row->tipoHabitacion->nombre == 'Individual' && $row->estado == 'LIBRE'){
                            ?>
                            <td style="background: green;">
                                <a style="background: green;border: none" href="{{URL::to('reservaciones/' . $row->id)}}" class="list-group-item obj-hab"></a>
                            </td>
                            <?php
-                               }else if($row->tipoHabitacion->nombre == 'Singular' && $row->estado == 'OCUPADA'){
+                               }else if($row->tipoHabitacion->nombre == 'Individual' && $row->estado == 'OCUPADA'){
                            ?>
                            <td style="background: red;">
                                <a style="background: red;border: none" href="<?php echo URL::to('reservaciones/'); ?>" class="list-group-item obj-hab"></a>
@@ -59,8 +63,12 @@ HABITACIONES DISPONIBLES
                            }
                            ?>
                        </tr>
+
+                       <!!-- HABITACIONES DOBLES -->
+
+
                        <tr>
-                           <td>{{ HTML::image('resources/doble.png') }}</td>
+                           <td><i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i>&nbsp;<i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i></td>
                            <?php
                            $c = 1;
                            foreach ($objhab as $row) {
@@ -89,8 +97,44 @@ HABITACIONES DISPONIBLES
                            }
                            ?>
                        </tr>
+
+                       <!!-- HABITACIONES TRIPLES -->
+
+
                        <tr>
-                           <td>{{ HTML::image('resources/matrimonio.png') }}</td>
+                           <td><i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i></i>&nbsp;<i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i></i>&nbsp;<i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i></td>
+                           <?php
+                           $c = 1;
+                           foreach ($objhab as $row) {
+                           $idHab = $row->id;
+                           $nroHab = $row->nro;
+                           $descHab = $row->tipoHabitacion->descripcion;
+                           $nombreTipoH = $row->tipoHabitacion->nombre;
+                           if($row->tipoHabitacion->nombre == 'Triple' && $row->estado == 'LIBRE'){
+                           ?>
+                           <td style="background: green;"><a style="background: green;border: none" href="<?php echo URL::to('reservaciones/' . $idHab); ?>" class="list-group-item obj-hab"></a>
+                           </td>
+                           <?php
+                           }else if($row->tipoHabitacion->nombre == 'Triple' && $row->estado == 'OCUPADA'){
+                           ?>
+                           <td style="background: red;"><a style="background: red;border: none" href="<?php echo URL::to('reservaciones/'); ?>" class="list-group-item obj-hab"></a>
+                           </td>
+                           <?php
+                           }else{
+                           ?>
+                           <td style="background: grey"></td>
+                           <?php
+                           }
+                           $c++;
+                           }
+                           ?>
+                       </tr>
+
+                       <!!-- HABITACIONES CON CAMA DE MATRIMONIO -->
+
+
+                       <tr>
+                           <td><i class="fa fa-male" aria-hidden="true" style="font-size: 2em"></i><i class="fa fa-female" aria-hidden="true" style="font-size: 2em"></i></td>
                            <?php
                            $c = 1;
                            foreach ($objhab as $row) {
@@ -118,8 +162,12 @@ HABITACIONES DISPONIBLES
                            }
                            ?>
                        </tr>
+
+                       <!!-- HABITACIONES KINGSIZE -->
+
+
                        <tr>
-                           <td>{{ HTML::image('resources/kingsize.png') }}</td>
+                           <td>{{ HTML::image('resources/king.png') }}</td>
                            <?php
 
                            $c = 1;
@@ -147,8 +195,12 @@ HABITACIONES DISPONIBLES
                           }
                            ?>
                        </tr>
+
+                       <!!-- HABITACIONES SUITS -->
+
+
                        <tr>
-                           <td>{{ HTML::image('resources/familiar.png') }}</td>
+                           <td><i class="fa fa-users" aria-hidden="true" style="font-size: 2em"></i></td>
                            <?php
                            $c = 1;
                            foreach ($objhab as $row) {
@@ -156,12 +208,12 @@ HABITACIONES DISPONIBLES
                            $nroHab = $row->nro;
                            $descHab = $row->tipoHabitacion->descripcion;
                            $nombreTipoH = $row->tipoHabitacion->nombre;
-                           if($row->tipoHabitacion->nombre == 'Familiar' && $row->estado == 'LIBRE'){
+                           if($row->tipoHabitacion->nombre == 'Suites' && $row->estado == 'LIBRE'){
                            ?>
                            <td style="background: green;"><a style="background: green;border: none" href="<?php echo URL::to('reservaciones/' . $idHab); ?>" class="list-group-item obj-hab"></a>
                            </td>
                            <?php
-                           }else if($row->tipoHabitacion->nombre == 'Familiar' && $row->estado == 'OCUPADA'){
+                           }else if($row->tipoHabitacion->nombre == 'Suites' && $row->estado == 'OCUPADA'){
                            ?>
                            <td style="background: red;"><a style="background: red;border: none" href="<?php echo URL::to('reservaciones/'); ?>" class="list-group-item obj-hab"></a>
                            </td>
@@ -175,7 +227,6 @@ HABITACIONES DISPONIBLES
                            }
                            ?>
                        </tr>
-
                 </tbody>
                 <tfoot>
                 </tfoot>

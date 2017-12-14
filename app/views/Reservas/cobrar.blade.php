@@ -37,16 +37,15 @@ $objMoneda = Moneda::find($ObjPrecio->id_moneda)
                         <input type="text" readonly value="<?php echo $Reserva->total; ?>" name="total"  class="form-control">
                     </div>
                     <div class="col-sm-3">
-                        <label>Monto a cuenta</label>
+                        <label>Pago a cuenta</label>
                         <input type="text" readonly value="<?php echo $monto; ?>" name="monto-cuenta"  class="form-control">
                     </div>
                     <div class="col-sm-3">
                         <label>Pago pendiente</label>
-                        <!-- CUIDADOO==se puso el id total aka pòr que se necesita validar el lado del cliente ojo: es necesario el id== total en este input-->
                         <input type="text" readonly value="<?php echo ($Reserva->total - $monto); ?>" name="pago-pendiente" id="total"  class="form-control">
                     </div>
                     <div class="col-sm-3">
-                        <label>Monto a Cobrar</label>
+                        <label>Total a Cobrar</label>
                         <input type="text" value="<?php echo ($Reserva->total - $monto); ?>" name="monto" id="monto" class="form-control only-numeric">
                     </div>
 

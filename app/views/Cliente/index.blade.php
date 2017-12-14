@@ -2,6 +2,7 @@
 @section('content')
 
     <!-- DATATABLE QUE MUESTRA LOS CLIENTES QUE TENEMOS EN LA BASE DE DATOS -->
+
     <div class="card mb-3">
         <div class="card-header">
             <i class="fa fa-table"></i> LISTADO DE CLIENTES
@@ -19,8 +20,8 @@
                         <th>Apellido2</th>
                         <th>DNI</th>
                         <th>Teléfono</th>
-                        <th>Dirección</th>
                         <th>Email</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -33,25 +34,29 @@
                             <td>{{ $row->apellido2 }}</td>
                             <td>{{ $row->dni }}</td>
                             <td>{{ $row->telefono }}</td>
-                            <td>{{ $row->direccion }}</td>
                             <td>{{ $row->email }}</td>
+                            <td><a href="cliente/{{$row->id}}" title="Más detalles"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
                             <td><a href="cliente/{{$row->id}}/edit" title="Editar"><i class="fa fa-pencil custom"></i></a></td>
                             <?php
                             $currentUser = Auth::user();
                             $usuario = Usuario::find($currentUser->id);
-                            if ($usuario->tipoUsuario->nombre === 'ADMINISTRADOR' || $usuario->tipoUsuario->nombre === 'Super Administrador') {
+                            if ($usuario->tipoUsuario->nombre === 'ADMINISTRADOR DE SISTEMA' || $usuario->tipoUsuario->nombre === 'ADMINISTRADOR DE CONTENIDOS') {
                             ?>
 
                             <td>
-                                <a href="#" class="a-delete" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                {{ Form::open(array('url'=>'administracion/cliente/'.$row->id,'method'=>'delete'))}}
-                                {{ Form::close()}}
+                                <a href="{{route('administracion.cliente.destroy',$row->id)}}"
+                                   onclick="return confirm('¿Seguro que desea eliminar este registro?')">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
                             </td>
                         <?php
+                            }else{
+                                ?>
+                            <td></td>
+                            <td></td>
+                                <?php
                             }
-
                             ?>
-
                         </tr>
                     @endforeach
                     </tbody>

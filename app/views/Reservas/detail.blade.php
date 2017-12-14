@@ -5,6 +5,7 @@ NUEVA RESERVA
 @section('content')
 
     <!-- MODAL NUEVA RESERVA -->
+
 <div class="modal-dialog" style="width: 100%;">
     <div class="modal-content">
         <div class="modal-header">
@@ -82,12 +83,12 @@ NUEVA RESERVA
                 </div>
                 <div class="col-sm-8">
                     {{ Form::hidden('dias','',['class'=>'form-control','id'=>'dias'])}}
-                    <div class="col-sm-6" id="caledar-visible1">
+                    <div class="col-sm-6" id="calendar-visible1">
                         {{Form::label('fecha_entrada', 'Ingreso')}}
                         {{ Form::hidden('fecha_entrada','',['class'=>'form-control','id'=>'date-start'])}}
                         <span class="error">{{ $errors->first('fecha_entrada')}}</span>
                     </div>
-                    <div class="col-sm-6" id="caledar-visible2">
+                    <div class="col-sm-6" id="calendar-visible2">
                         {{Form::label('fecha_salida', 'Salida')}}
                         {{ Form::hidden('fecha_salida','',['class'=>'form-control','id'=>'date-end'])}}
                         <span class="error">{{ $errors->first('fecha_salida')}}</span>
@@ -107,7 +108,7 @@ NUEVA RESERVA
 
 <!-- MODAL NUEVO CLIENTE -->
 <div id="loginModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:60%">
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
@@ -116,38 +117,45 @@ NUEVA RESERVA
             <div class="modal-body">
                 {{ Form::open(array('url' => 'cliente/guardar','class'=>'form-horizontal','id'=>'new-client')) }}
                 <div class="form-group">
-                    {{Form::label('nombre', 'Nombre',['class'=>'col-sm-3 control-label'])}}
+                    {{Form::label('nombre', 'Nombre*',['class'=>'col-sm-3 control-label'])}}
                     <div class="col-sm-6">
                         {{ Form::text('nombre','',['class'=>'form-control'])}}
                         <span class="error">{{ $errors->first('nombre')}}</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('apellido1', 'Apellido1',['class'=>'col-sm-3 control-label'])}}
+                    {{Form::label('apellido1', 'Apellido1*',['class'=>'col-sm-3 control-label'])}}
                     <div class="col-sm-6">
                         {{ Form::text('apellido1','',['class'=>'form-control'])}}
                         <span class="error">{{ $errors->first('apellido1')}}</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('apellido2', 'Apellido2',['class'=>'col-sm-3 control-label'])}}
+                    {{Form::label('apellido2', 'Apellido2*',['class'=>'col-sm-3 control-label'])}}
                     <div class="col-sm-6">
                         {{ Form::text('apellido2','',['class'=>'form-control'])}}
                         <span class="error">{{ $errors->first('apellido2')}}</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('dni', 'DNI',['class'=>'col-sm-3 control-label'])}}
+                    {{Form::label('dni', 'DNI*',['class'=>'col-sm-3 control-label'])}}
                     <div class="col-sm-6">
                         {{ Form::text('dni','',['class'=>'form-control'])}}
                         <span class="error">{{ $errors->first('ci')}}</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('telefono', 'Teléfono',['class'=>'col-sm-3 control-label'])}}
+                    {{Form::label('telefono', 'Teléfono*',['class'=>'col-sm-3 control-label'])}}
                     <div class="col-sm-6">
                         {{ Form::text('telefono','',['class'=>'form-control'])}}
                         <span class="error">{{ $errors->first('telefono')}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{Form::label('email', 'Email*',['class'=>'col-sm-3 control-label'])}}
+                    <div class="col-sm-6">
+                        {{ Form::text('email','',['class'=>'form-control'])}}
+                        <span class="error">{{ $errors->first('email')}}</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -157,19 +165,24 @@ NUEVA RESERVA
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('email', 'Email',['class'=>'col-sm-3 control-label'])}}
+                    {{Form::label('provincia', 'Provincia',['class'=>'col-sm-3 control-label'])}}
                     <div class="col-sm-6">
-                        {{ Form::text('email','',['class'=>'form-control'])}}
-                        <span class="error">{{ $errors->first('email')}}</span>
+                        {{ Form::text('provincia','',['class'=>'form-control'])}}
                     </div>
                 </div>
-                {{ Form::close() }}
+                <div class="form-group">
+                    {{Form::label('pais', 'Pais',['class'=>'col-sm-3 control-label'])}}
+                    <div class="col-sm-6">
+                        {{ Form::text('pais','',['class'=>'form-control'])}}
+                    </div>
+                </div>
+
                 <div class="col-md-offset-5">
                     <div class="row">
                         <a href="{{URL::to('cliente/guardar')}}" id="guardar-cliente" role="button" class="btn btn-success" >Guardar</a>
-                        <a class="btn btn-danger btn-close" href="{{ URL::previous() }}">Cancelar</a>
                     </div>
                 </div>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

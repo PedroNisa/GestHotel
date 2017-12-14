@@ -2,6 +2,7 @@
 
 class CuentaPorCobrarController extends \BaseController {
 
+    // Filtramos la entrada a la ruta, si no está autenticado, devolvemos a la raiz del proyecto
     public function __construct() {
         $this->beforeFilter(function() {
             if (!Auth::check()) {
@@ -9,7 +10,9 @@ class CuentaPorCobrarController extends \BaseController {
             }
         });
     }
-
+    
+    //función para guardar los datos devueltos tras realizar una entrega a cuenta
+    //retorna la vista reservas con los datos nuevos
     public function guardar($id_reserva) {
         $objReserva = Reserva::find($id_reserva);
         $monto = ($objReserva->total - $this->getMonto($objReserva));
@@ -23,7 +26,8 @@ class CuentaPorCobrarController extends \BaseController {
         $objCuentaPC->save();
         return View::make('Reservas.confirmado')->with('Reserva', $objReserva);
     }
-
+    
+    //recupera el total adeudado
     private function getMonto($objReserva) {
         $monto = 0;
         if (count($objReserva->pago) > 0) {

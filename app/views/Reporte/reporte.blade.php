@@ -42,8 +42,6 @@ function getContent($Input) {
             } else {
                 $Reserva = Reserva::where('estado_pago', '=', $Input['estado_pago'])->whereBetween('fecha', array($Input['desde'] . ' 00:00:00', $Input['hasta'] . ' 23:59:59'))->get();
             }
-
-
             foreach ($Reserva as $rowR) {
                 $Habitacion = Habitacion::find($rowR->habitacionReserva->id_habitacion);
                 $ObjPrecio = Precio::find($rowR->habitacionReserva->id_precio);
@@ -74,14 +72,11 @@ function getContent($Input) {
                             echo $monto . $objMoneda->simbolo;
                         }
                         ?>
-
                     </td>
                     <td><?php echo $rowR->total; ?></td>
-
                 </tr>
                 <?php
             }
-
             ?>
         </tbody>
     </table>
@@ -100,7 +95,7 @@ function getDateFormting($date) {
 $content = ob_get_clean();
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->SetTitle('my title');
-$mpdf->SetHeader('{DATE j-m-Y}|{PAGENO}/{nb}|Hotel Jhonn-Zen');
+$mpdf->SetHeader('{DATE j-m-Y}|{PAGENO}/{nb}|Hotel Viña de Oro');
 $mpdf->SetFooter('{PAGENO}');
 $mpdf->SetFooter(array(
     'L' => array(

@@ -4,6 +4,8 @@ NUEVO USUARIO
 @stop
 @section('content')
 
+<!-- DATATABLES PARA CREAR UN NUEVO USUARIO -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> NUEVO USUARIO
@@ -33,7 +35,7 @@ NUEVO USUARIO
                                 <select name="id_trabajador" class="form-control" >
                                     <option value="">ELEGIR</option>
                                     @foreach(Trabajador::where('id','!=','1')->orderBy('nombre','asc')->get() as $row)
-                                        <option value="{{$row->id}}">{{$row->nombre.' '.$row->apellidoP.' '.$row->apellidoM}}</option>
+                                        <option value="{{$row->id}}">{{$row->nombre.' '.$row->apellido1.' '.$row->apellido2}}</option>
                                     @endforeach
                                 </select>
                                 <span class="error">{{ $errors->first('id_trabajador')}}</span>

@@ -1,22 +1,16 @@
 @extends('header')
-@section('title')
-    LISTADO DE USUARIOS
-@stop
-@section('content')
 
+@section('content')
 
     <section class="content-header">
         <h1>
             Acceso Rápido.
-        </h1>
-
-        <br>
-
+        </h1><br>
     </section>
 
     <section class="content">
 
-        <!-- =========================================================== -->
+        <!-- ========================= HOME DEL DASHBOARD ================================== -->
 
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -84,7 +78,7 @@
         <!-- /.row -->
 
 
-        <!-- =========================================================== -->
+        <!-- ===================== ACCESOS DIRECTOS ====================================== -->
 
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -141,11 +135,5 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
-
-
     </section>
-
-
-
-
     @stop

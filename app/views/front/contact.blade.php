@@ -1,6 +1,11 @@
+
+
+<!-- PAGINA CONTACTO -->
+
+<!-- INCLUYE LOS ESTILOS Y SCRIPTS -->
 @include('Front.header')
 
-		<!-- Header -->
+        <!-- NAVBAR -->
 <div class="tm-header">
 	<div class="container">
 		<div class="row">
@@ -24,27 +29,12 @@
 	</div>
 </div>
 
-	<!-- Banner -->
-	<section class="tm-banner">
-		<!-- Flexslider -->
-		<div class="flexslider flexslider-banner">
-		  <ul class="slides">
-			  <li>
-				  <div class="tm-banner-inner">
-					  <h1 class="tm-banner-title">Busca <span class="tm-yellow-text">el mejor</span> Descanso</h1>
-					  <p class="tm-banner-subtitle">Para Días Interminables</p>
-					  <a href="#more" class="tm-banner-link">Leer más</a>
-				  </div>
-				  <img src="{{asset('images/banner-1.jpg')}}" alt="Image" />
-			  </li>
-		  </ul>
-		</div>	
-	</section>
 
-	<!-- gray bg -->	
-	<section class="container tm-home-section-1" id="more">
+
+<!-- SECCION BG GRIS -->
+	<section class="container tm-home-section-1" id="more" style="margin-top: 5%;">
 		<div class="row">
-			<!-- slider -->
+            <!-- HEAD BIENVENIDO -->
 			<div class="flexslider effect2 effect2-contact tm-contact-box-1">
 				<ul class="slides">
 					<li>
@@ -52,8 +42,11 @@
 						<div class="contact-text">
 							<h2 class="slider-title">Hoteles Viña de Oro</h2>
 							<h3 class="slider-subtitle">Bienvenido a la sección de datos de contacto </h3>
-							<p class="slider-description">Tiene alguna pregunta, comentario o queja? Puede encontrar las respuestas a sus preguntas aquí. Tanto si estás preparando una próxima estancia en nuestro hotel como si ya nos has visitado, siempre estamos * a tu disposición para responder a tus preguntas o comentarios: este espacio te está completamente dedicado.. <br><br>
-								En esta sección, puede comunicarnos cualquier incidente que se produzca antes, durante o después de su estancia. Sus experiencias e impresiones son muy importantes para nosotros e intentaremos responderle a la mayor brevedad posible.</p>
+							<p class="slider-description">Tiene alguna pregunta, comentario o queja? Puede encontrar las respuestas a sus preguntas aquí.
+                                Tanto si estás preparando una próxima estancia en nuestro hotel como si ya nos has visitado, siempre estamos a tu disposición
+                                para responder a tus preguntas o comentarios: este espacio te está completamente dedicado.. <br><br>
+								En esta sección, puede comunicarnos cualquier incidente que se produzca antes, durante o después de su estancia.
+                                Sus experiencias e impresiones son muy importantes para nosotros e intentaremos responderle a la mayor brevedad posible.</p>
 							<div class="slider-social">
 								<a href="#" class="tm-social-icon"><i class="fa fa-twitter"></i></a>
 								<a href="#" class="tm-social-icon"><i class="fa fa-facebook"></i></a>
@@ -65,9 +58,9 @@
 				</ul>
 			</div>
 		</div>
-	</section>		
-	
-	<!-- white bg -->
+	</section>
+
+<!-- SECCION BG BLANCO -->
 	<section class="section-padding-bottom">
 		<div class="container">
 			<div class="row">
@@ -78,8 +71,8 @@
 				</div>				
 			</div>
 			<div class="row">
-				<!-- contact form -->
-				<form action="#" method="post" class="tm-contact-form">
+				<!-- FORMULARIO DE CONTACTO -->
+                {{ Form::open(['route' => 'contact', 'method' => 'post', 'class'=>'tm-contact-form', 'id' => 'reserva']) }}
 					<div class="col-lg-6 col-md-6">
 						<div class="map">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d778.6803384833131!2d-6.397163170839716!3d38.67827144568237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd141d700c313adb%3A0xdbe8ff620822a610!2sCalle+Ortega+y+Mu%C3%B1oz%2C+28%2C+06200+Almendralejo%2C+Badajoz!5e0!3m2!1ses!2ses!4v1510684298750" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -93,26 +86,34 @@
 						</div>
 					</div> 
 					<div class="col-lg-6 col-md-6 tm-contact-form-input">
-						<div class="form-group">
-							<input type="text" id="contact_name" class="form-control" placeholder="NOMBRE" />
+
+						<div class="tm-form-inner" style="margin-top: -11%;">
+							<div class="form-group" >
+								{{ Form::label('nombreCompleto', 'Nombre y Apellidos*') }}
+								{{ Form::text('nombreCompleto', null, ['class' => 'form-control','placeholder'=>'Introduzca su nombre y apellidos','id' => 'nombreCompleto']) }}
+							</div>
+							<div class="form-group">
+								{{ Form::label('email', 'E-Mail*') }}
+								{{ Form::email('email', null, ['class' => 'form-control','placeholder'=>'Introduzca su email' ]) }}
+							</div>
+							<div class="form-group" >
+								{{ Form::label('asunto', 'Asunto*') }}
+								{{ Form::text('asunto', null, ['class' => 'form-control','placeholder'=>'Introduzca el asunto de su correo']) }}
+							</div>
+							<div class="form-group" >
+								{{Form::label('mensaje', 'Mensaje*',['class'=>'control-label'])}}
+								{{ Form::textArea('mensaje','',['class'=>'form-control', 'rows' => 2,'placeholder'=>'Agregue las anotaciones que crea nececesarias.'])}}
+							</div>
 						</div>
-						<div class="form-group">
-							<input type="email" id="contact_email" class="form-control" placeholder="EMAIL" />
+						<div class="form-group text-center">
+							{{ Form::submit('Enviar', ['class' => 'tm-submit-btn','data-toggle'=>'modal','data-target'=>'#myModal' ] ) }}
 						</div>
-						<div class="form-group">
-							<input type="text" id="contact_subject" class="form-control" placeholder="ASUNTO" />
-						</div>
-						<div class="form-group">
-							<textarea id="contact_message" class="form-control" rows="6" placeholder="MENSAJE"></textarea>
-						</div>
-						<div class="form-group">
-							<button class="tm-submit-btn" type="submit" name="submit">Enviar</button>
-						</div>               
+
 					</div>
-				</form>
+                {{ Form::close() }}
 			</div>			
 		</div>
 	</section>
 
-
+<!-- FOOTER -->
 @include('front.footer')

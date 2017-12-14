@@ -4,6 +4,8 @@
 @stop
 @section('content')
 
+<!-- DATATABLES PARA CREAR UN NUEVO TRABAJADOR -->
+
     <div class="card md-3">
         <div class="card-header">
             <i class="fa fa-table"></i> ALTA TRABAJADOR
@@ -35,7 +37,7 @@
                                 <span class="error">{{ $errors->first('apellido2')}}</span>
                             </div>
                             <div class="col-md-4 form-group">
-                                {{Form::label('dni', 'DNI',['class'=>'col-sm-3 control-label'])}}
+                                {{Form::label('dni', 'DNI',['class'=>'control-label'])}}
                                 {{ Form::text('dni','',['class'=>'form-control'])}}
                                 <span class="error">{{ $errors->first('ci')}}</span>
                             </div>
@@ -45,13 +47,21 @@
                                 <span class="error">{{ $errors->first('telefono')}}</span>
                             </div>
                             <div class="col-md-4 form-group">
-                                {{Form::label('email', 'Email',['class'=>'col-sm-3 control-label'])}}
+                                {{Form::label('email', 'Email',['class'=>'control-label'])}}
                                 {{ Form::text('email','',['class'=>'form-control'])}}
                                 <span class="error">{{ $errors->first('email')}}</span>
                             </div>
-                            <div class="col-md-8 form-group">
-                                {{ Form::label('direccion', 'Dirección',['class'=>'col-sm-4 control-label']) }}
+                            <div class="col-md-4 form-group">
+                                {{ Form::label('direccion', 'Dirección',['class'=>'control-label']) }}
                                 {{ Form::text('direccion','',['class'=>'form-control'])}}
+                            </div>
+                            <div class="col-md-4 form-group">
+                                {{ Form::label('provincia', 'Provincia',['class'=>'control-label']) }}
+                                {{ Form::text('provincia','',['class'=>'form-control'])}}
+                            </div>
+                            <div class="col-md-4 form-group">
+                                {{ Form::label('pais', 'Pais',['class'=>'control-label']) }}
+                                {{ Form::text('pais','',['class'=>'form-control'])}}
                             </div>
                         </div>
 

@@ -11,10 +11,31 @@ $(function() {
         $(this).tab('show')
     })
 
-    $('.date').datetimepicker({
-        format: 'MM/DD/YYYY'
+
+
+
+    //formato y lenguaje español datapicker entrada
+    $('.date-in').datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es',
+        minDate: moment(),
+
     });
-    $('.date-time').datetimepicker();
+    //extraemos la fecha de entrada y la convertimos en un objeto Date
+    function mdate(){
+        var from = $("#fechaEntrada").val().split("/");
+        var f = new Date(from[2], from[1] - 1, parseInt(from[0])+1);
+        return f;
+    }
+
+    //formato y lenguaje español datapicker salida
+    $('.date-out').datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es',
+        minDate:mdate(),
+    });
+
+
 
     // https://css-tricks.com/snippets/jquery/smooth-scrolling/
     $('a[href*=#]:not([href=#])').click(function() {
@@ -33,13 +54,9 @@ $(function() {
 
 // Load Flexslider when everything is loaded.
 $(window).load(function() {
-
-//	For images only
     $('.flexslider').flexslider({
         controlNav: false
     });
+
+
 });
-
-
-
-

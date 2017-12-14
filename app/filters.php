@@ -31,6 +31,24 @@ App::after(function($request, $response) {
   |
  */
 
+
+    /* filtro para retornar al index a cualquier usuario excepto el administrador de sistemas */
+    Route::filter('adminSis', function() {
+        $currentUser = Auth::user();
+        $usuario = Usuario::find($currentUser->id);
+        if ($usuario->tipoUsuario->nombre != 'ADMINISTRADOR DE SISTEMA')
+            return Redirect::to('/');
+    });
+/* filtro para retornar al index a cualquier usuario excepto el administrador de sistemas Y al administrador de contenidos */
+Route::filter('adminCont', function() {
+    $currentUser = Auth::user();
+    $usuario = Usuario::find($currentUser->id);
+    if ($usuario->tipoUsuario->nombre != 'ADMINISTRADOR DE SISTEMA')
+    if ($usuario->tipoUsuario->nombre != 'ADMINISTRADOR DE CONTENIDOS')
+        return Redirect::to('/');
+});
+
+
 Route::filter('auth', function() {
     if (Auth::guest())
         return Redirect::guest('/');

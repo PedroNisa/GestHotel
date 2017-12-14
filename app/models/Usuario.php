@@ -5,6 +5,15 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 
+    /*
+    * A cada modelo se le asocia la tabla correspondiente en la base de datos
+    * Para crear las relaciones, creamos funciones que devuelven el tipo de relación.
+    * Al tipo de relación le pasamos dos parámetros:
+    * el primero pertenece al modelo al que está asociado y el
+    * segundo indica el campo enlazado a este modelo.
+    */
+
+
     protected $table = 'usuario';
 
     /**
@@ -13,12 +22,14 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
      * @var array
      */
     protected $hidden = array('password');
- //   protected $primaryKey = 'id';
 
+
+    //un rol esta asociado a los usuarios
     public function tipoUsuario() {
         return $this->belongsTo('TipoUsuario','id_tipo_usuario');
     }
 
+    // un trabajdor está asociado a su usuario
     public function trabajador() {
         return $this->belongsTo('Trabajador','id_trabajador');
     }
